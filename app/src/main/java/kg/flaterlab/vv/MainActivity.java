@@ -1,5 +1,6 @@
 package kg.flaterlab.vv;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -11,9 +12,12 @@ import android.view.MenuItem;
 import android.view.Window;
 
 
+import io.paperdb.Paper;
 import kg.flaterlab.vv.fragments.AddFragment;
 import kg.flaterlab.vv.fragments.DashBoardFragment;
 import kg.flaterlab.vv.fragments.ProfileFragment;
+import kg.flaterlab.vv.models.User;
+import kg.flaterlab.vv.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
+
+        if(Paper.book().contains("user")){
+            User u = Paper.book().read("user", new User());
+        }else{
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.navigation);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

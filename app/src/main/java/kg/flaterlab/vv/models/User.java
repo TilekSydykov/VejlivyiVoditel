@@ -8,7 +8,10 @@ public class User {
     private boolean isOnline;
     String email;
 
-    public User(String name, String surname, String status,String email, boolean isOnline) {
+    public User() {
+    }
+
+    public User(String name, String surname, String status, String email, boolean isOnline) {
         this.name = name;
         this.surname = surname;
         this.status = status;
