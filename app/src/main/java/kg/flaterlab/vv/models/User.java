@@ -6,12 +6,14 @@ public class User {
     private String surname;
     private String status;
     private boolean isOnline;
+    String email;
 
-    public User(String name, String surname, String status, boolean isOnline) {
+    public User(String name, String surname, String status,String email, boolean isOnline) {
         this.name = name;
         this.surname = surname;
         this.status = status;
         this.isOnline = isOnline;
+        this.email = email;
     }
 
     public String getName() {
@@ -44,6 +46,14 @@ public class User {
 
     public void setOnline(boolean online) {
         isOnline = online;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
 
