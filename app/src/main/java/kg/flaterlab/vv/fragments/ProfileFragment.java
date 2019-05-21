@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import kg.flaterlab.vv.R;
 import kg.flaterlab.vv.databinding.UserProfileBinding;
-import kg.flaterlab.vv.models.User;
+import kg.flaterlab.vv.data.model.User;
 
 public class ProfileFragment extends Fragment {
     public ProfileFragment() {

@@ -1,4 +1,4 @@
-package kg.flaterlab.vv.models;
+package kg.flaterlab.vv.data.model;
 
 public class Number {
     int version;

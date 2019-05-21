@@ -5,7 +5,7 @@
     <data>
         <variable
             name="user"
-            type="kg.flaterlab.vv.models.User"/>
+            type="kg.flaterlab.vv.data.model.User"/>
     </data>
 
 

@@ -1,4 +1,4 @@
-package kg.flaterlab.vv.repo;
+package kg.flaterlab.vv.data;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import kg.flaterlab.vv.fragments.ProfileFragment;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.FormBody;
 
 class  Network extends AsyncTask<String, String, String> {
     private WeakReference<ProfileFragment> activityReference;

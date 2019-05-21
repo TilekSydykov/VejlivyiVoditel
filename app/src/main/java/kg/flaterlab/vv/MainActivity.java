@@ -16,10 +16,11 @@ import io.paperdb.Paper;
 import kg.flaterlab.vv.fragments.AddFragment;
 import kg.flaterlab.vv.fragments.DashBoardFragment;
 import kg.flaterlab.vv.fragments.ProfileFragment;
-import kg.flaterlab.vv.models.User;
+import kg.flaterlab.vv.data.model.User;
 import kg.flaterlab.vv.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
+    User u;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         if(Paper.book().contains("user")){
-            User u = Paper.book().read("user", new User());
+            u = Paper.book().read("user", new User());
         }else{
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);

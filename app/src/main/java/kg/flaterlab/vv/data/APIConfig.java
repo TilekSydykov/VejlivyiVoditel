@@ -1,4 +1,4 @@
-package kg.flaterlab.vv.repo;
+package kg.flaterlab.vv.data;
 
 public class APIConfig {
 }
