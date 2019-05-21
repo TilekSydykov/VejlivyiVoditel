@@ -22,7 +22,7 @@ import kg.flaterlab.vv.R;
 import kg.flaterlab.vv.ui.login.LoginViewModel;
 import kg.flaterlab.vv.ui.login.LoginViewModelFactory;
 
-public class LoginActivity extends AppCompatActivity {
+public class    LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
 
@@ -66,11 +66,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
+                    setResult(Activity.RESULT_OK);
+                    //Complete and destroy login activity once successful
+                    finish();
                 }
-                setResult(Activity.RESULT_OK);
-
-                //Complete and destroy login activity once successful
-                finish();
             }
         });
 
@@ -89,19 +88,19 @@ public class LoginActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
-            }
-        };
-        usernameEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
                 }
-                return false;
+            };
+            usernameEditText.addTextChangedListener(afterTextChangedListener);
+            passwordEditText.addTextChangedListener(afterTextChangedListener);
+            passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        loginViewModel.login(usernameEditText.getText().toString(),
+                                passwordEditText.getText().toString());
+                    }
+                    return false;
             }
         });
 
@@ -127,6 +126,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
+        System.exit(0);
     }
 }

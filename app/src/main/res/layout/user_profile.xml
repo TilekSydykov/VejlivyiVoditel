@@ -48,7 +48,7 @@
                 android:layout_marginStart="151dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="17dp"
-                android:text="@{user.name + ' ' + user.surname}"
+                android:text="@{user.name}"
                 android:textColor="#fff"
                 android:textSize="24sp"
                 android:textStyle="bold" />

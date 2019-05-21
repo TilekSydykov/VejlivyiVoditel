@@ -1,7 +1,8 @@
 package kg.flaterlab.vv.helper;
 
-import io.paperdb.Paper;
 
-public class DB extends Paper {
+public class DB {
+
+    public final static String USER_NODE = "user";
 
 }

@@ -16,13 +16,12 @@ import java.io.IOException;
 
 import kg.flaterlab.vv.data.model.User;
 
-/**
- * Class that handles authentication w/ login credentials and retrieves user information.
- */
-public class LoginDataSource {
+public class SignUpDataSource {
+    public SignUpDataSource() {
+    }
 
-    public Result<User> login(String username, String password) {
-        final String TAG = "login1";
+    public Result<User> signUp(String username, String password, String password2) {
+        final String TAG = "signUp";
         Log.d(TAG, "login: start");
 
         try {
@@ -34,10 +33,11 @@ public class LoginDataSource {
                     .add(  "app", "v1"  )
                     .add(  "login", username )
                     .add(  "password", password  )
+                    .add(  "password2", password2  )
                     .build();
 
             Request request2 = new Request.Builder()
-                    .url("https://flipdex.ru/api/signIn")
+                    .url("https://flipdex.ru/api/signUp")
                     .post(formBody)
                     .build();
             String res2 = "";
@@ -73,11 +73,6 @@ public class LoginDataSource {
             Log.d(TAG, "login: " + e.getMessage());
             return new Result.Error(new IOException("Error logging in", e));
         }
-    }
-
-    public void logout() {
-        // TODO: revoke authentication
-
     }
 
 }

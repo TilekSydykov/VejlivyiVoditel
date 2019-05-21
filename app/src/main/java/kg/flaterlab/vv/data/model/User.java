@@ -2,57 +2,64 @@ package kg.flaterlab.vv.data.model;
 
 
 public class User {
+    private String username;
     private String name;
-    private String surname;
-    private String status;
+    private String uid;
     private boolean isOnline;
-    String email;
+    private String email;
 
     public User() {
     }
 
-    public User(String name, String surname, String status, String email, boolean isOnline) {
+    public User(String username, String name, String uid) {
+        this.username = username;
         this.name = name;
-        this.surname = surname;
-        this.status = status;
+        this.uid = uid;
+    }
+
+    public User(String username, String name, String uid, boolean isOnline, String email) {
+        this.username = username;
+        this.name = name;
+        this.uid = uid;
         this.isOnline = isOnline;
         this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getStatus() {
-        return status;
+    public String getUid() {
+        return uid;
     }
 
     public boolean isOnline() {
         return isOnline;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public void setOnline(boolean online) {
         isOnline = online;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public void setEmail(String email) {

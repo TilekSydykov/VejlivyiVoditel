@@ -34,5 +34,5 @@ dependencies {
 
     implementation 'io.paperdb:paperdb:2.6'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
-    implementation "com.squareup.okhttp3:okhttp:3.14.2"
+    implementation 'com.squareup.okhttp:okhttp:2.7.2'
 }

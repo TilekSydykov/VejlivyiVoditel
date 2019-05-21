@@ -3,15 +3,21 @@ package kg.flaterlab.vv;
 import android.net.Network;
 import android.util.Log;
 
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
 
 import java.io.IOException;
 
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import io.paperdb.Paper;
+import kg.flaterlab.vv.data.model.User;
+import kg.flaterlab.vv.helper.DB;
 
 import static org.junit.Assert.*;
 
@@ -27,27 +33,153 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void getCon(){
+    public void CheckUserLogin(){
         OkHttpClient client = new OkHttpClient();
 
-        FormBody.Builder builder = new FormBody.Builder();
-        builder.add(  "app", "v1"  );
-        builder.add(  "name", "dsfd"  );
-        builder.add(  "login", "fzlsfre" );
-        builder.add(  "password", "1d"  );
-        builder.add(  "password2", "1d"  );
-        RequestBody formBody = builder.build();
+        RequestBody formBody = new FormEncodingBuilder()
+                .add(  "app", "v1"  )
+                .add(  "login", "himik"  )
+                .add(  "password", "himik"  )
+                .build();
         Request request2 = new Request.Builder()
-                .url("http://himikawa.io/api/signUp")
+                .url("https://flipdex.ru/api/signIn")
                 .post(formBody)
                 .build();
         String res2 = "";
         try{
             Response response2 = client.newCall(request2).execute();
             res2 = response2.body().string();
-            System.out.println("post executer server res :" + res2);
+
+            try {
+                JSONObject json = new JSONObject(res2);
+                JSONObject json_user = json.getJSONObject("user");
+                System.out.println(res2);
+                User u = new User();
+                u.setName(json_user.getString("name"));
+                u.setUid(json_user.getString("token"));
+                u.setUsername(json_user.getString("login"));
+                u.setEmail(json_user.getString("email"));
+
+                Paper.book().write(DB.USER_NODE, u);
+            }catch (JSONException e) {
+                Log.d("check", "getCon: ");
+            }
+            Log.d("check", "post executer server res :" + res2);
         }catch (IOException e){
             Log.d("check", "cant read response");
         }
+
+    }
+    @Test
+    public void CheckUserSignUp(){
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody formBody = new FormEncodingBuilder()
+                .add(  "Param1", "A"  )
+                .add(  "Param2", "b"  )
+                .build();
+        Request request2 = new Request.Builder()
+                .url("https://ptsv2.com/t/qfto0-1556245310/d/285070126/post")
+                .post(formBody)
+                .build();
+        String res2 = "";
+        try{
+            Response response2 = client.newCall(request2).execute();
+            res2 = response2.body().string();
+
+            try {
+                JSONObject json = new JSONObject(res2);
+                JSONObject json_user = json.getJSONObject("user");
+                System.out.println(res2);
+                User u = new User();
+                u.setName(json_user.getString("name"));
+                u.setUid(json_user.getString("token"));
+                u.setUsername(json_user.getString("login"));
+                u.setEmail(json_user.getString("email"));
+
+                Paper.book().write(DB.USER_NODE, u);
+            }catch (JSONException e) {
+                Log.d("check", "getCon: ");
+            }
+            Log.d("check", "post executer server res :" + res2);
+        }catch (IOException e){
+            Log.d("check", "cant read response");
+        }
+
+    }
+    @Test
+    public void CheckUserVote(){
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody formBody = new FormEncodingBuilder()
+                .add(  "Param1", "A"  )
+                .add(  "Param2", "b"  )
+                .build();
+        Request request2 = new Request.Builder()
+                .url("https://ptsv2.com/t/qfto0-1556245310/d/285070126/post")
+                .post(formBody)
+                .build();
+        String res2 = "";
+        try{
+            Response response2 = client.newCall(request2).execute();
+            res2 = response2.body().string();
+
+            try {
+                JSONObject json = new JSONObject(res2);
+                JSONObject json_user = json.getJSONObject("user");
+                System.out.println(res2);
+                User u = new User();
+                u.setName(json_user.getString("name"));
+                u.setUid(json_user.getString("token"));
+                u.setUsername(json_user.getString("login"));
+                u.setEmail(json_user.getString("email"));
+
+                Paper.book().write(DB.USER_NODE, u);
+            }catch (JSONException e) {
+                Log.d("check", "getCon: ");
+            }
+            Log.d("check", "post executer server res :" + res2);
+        }catch (IOException e){
+            Log.d("check", "cant read response");
+        }
+
+    }
+
+    @Test
+    public void CheckUserGet(){
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody formBody = new FormEncodingBuilder()
+                .add(  "Param1", "A"  )
+                .add(  "Param2", "b"  )
+                .build();
+        Request request2 = new Request.Builder()
+                .url("https://ptsv2.com/t/qfto0-1556245310/d/285070126/post")
+                .post(formBody)
+                .build();
+        String res2 = "";
+        try{
+            Response response2 = client.newCall(request2).execute();
+            res2 = response2.body().string();
+
+            try {
+                JSONObject json = new JSONObject(res2);
+                JSONObject json_user = json.getJSONObject("user");
+                System.out.println(res2);
+                User u = new User();
+                u.setName(json_user.getString("name"));
+                u.setUid(json_user.getString("token"));
+                u.setUsername(json_user.getString("login"));
+                u.setEmail(json_user.getString("email"));
+
+                Paper.book().write(DB.USER_NODE, u);
+            }catch (JSONException e) {
+                Log.d("check", "getCon: ");
+            }
+            Log.d("check", "post executer server res :" + res2);
+        }catch (IOException e){
+            Log.d("check", "cant read response");
+        }
+
     }
 }
