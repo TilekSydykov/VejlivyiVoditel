@@ -1,11 +1,12 @@
 package kg.flaterlab.vv.ui.login;
 
 import android.app.Activity;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v7.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import kg.flaterlab.vv.R;
-import kg.flaterlab.vv.data.SignUpRepository;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -34,10 +34,12 @@ public class SignUpActivity extends AppCompatActivity {
                 .get(SignUpViewModel.class);
 
         final EditText usernameEditText = findViewById(R.id.username);
+        final EditText nameEditText = findViewById(R.id.name);
         final EditText passwordEditText = findViewById(R.id.password);
         final EditText passwordSecondEditText = findViewById(R.id.password_second);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+
         signUpViewModel.getSignUpFormState().observe(this, new Observer<SignUpFormState>() {
 
             @Override
@@ -48,6 +50,9 @@ public class SignUpActivity extends AppCompatActivity {
                 loginButton.setEnabled(signUpFormState.isDataValid());
                 if (signUpFormState.getUsernameError() != null) {
                     usernameEditText.setError(getString(signUpFormState.getUsernameError()));
+                }
+                if (signUpFormState.getUsernameError() != null) {
+                    nameEditText.setError(getString(signUpFormState.getUsernameError()));
                 }
                 if (signUpFormState.getPasswordError() != null) {
                     passwordEditText.setError(getString(signUpFormState.getPasswordError()));
@@ -73,6 +78,8 @@ public class SignUpActivity extends AppCompatActivity {
                     updateUiWithUser(signUpResult.getSuccess());
                     setResult(Activity.RESULT_OK);
                     //Complete and destroy login activity once successful
+                    Intent intent=new Intent();
+                    setResult(2, intent);
                     finish();
                 }
             }
@@ -104,7 +111,8 @@ public class SignUpActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     signUpViewModel.signUp(usernameEditText.getText().toString(),
                             passwordEditText.getText().toString(),
-                            passwordSecondEditText.getText().toString());
+                            passwordSecondEditText.getText().toString(),
+                            nameEditText.getText().toString());
                 }
                 return false;
             }
@@ -116,7 +124,8 @@ public class SignUpActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 signUpViewModel.signUp(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString(),
-                        passwordSecondEditText.getText().toString());
+                        passwordSecondEditText.getText().toString(),
+                        nameEditText.getText().toString());
             }
         });
     }

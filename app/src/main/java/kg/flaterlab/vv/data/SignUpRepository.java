@@ -32,9 +32,9 @@ public class SignUpRepository {
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public Result<User> signUp(String username, String password, String password2) {
+    public Result<User> signUp(String username, String password, String password2, String name) {
         // handle login
-        Result<User> result = dataSource.signUp(username, password, password2);
+        Result<User> result = dataSource.signUp(username, password, password2, name);
         if (result instanceof Result.Success) {
             setLoggedInUser(((Result.Success<User>) result).getData());
         }

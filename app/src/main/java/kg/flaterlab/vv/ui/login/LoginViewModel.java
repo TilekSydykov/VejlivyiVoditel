@@ -1,31 +1,17 @@
 package kg.flaterlab.vv.ui.login;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.util.Patterns;
 
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 
-import io.paperdb.Paper;
 import kg.flaterlab.vv.data.LoginRepository;
 import kg.flaterlab.vv.data.Result;
 import kg.flaterlab.vv.R;
 import kg.flaterlab.vv.data.model.User;
-import kg.flaterlab.vv.fragments.ProfileFragment;
-import kg.flaterlab.vv.helper.DB;
 
 public class LoginViewModel extends ViewModel {
 

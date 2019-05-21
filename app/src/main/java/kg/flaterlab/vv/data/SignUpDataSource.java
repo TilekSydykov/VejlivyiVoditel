@@ -20,7 +20,7 @@ public class SignUpDataSource {
     public SignUpDataSource() {
     }
 
-    public Result<User> signUp(String username, String password, String password2) {
+    public Result<User> signUp(String username, String password, String password2, String name) {
         final String TAG = "signUp";
         Log.d(TAG, "login: start");
 
@@ -34,6 +34,7 @@ public class SignUpDataSource {
                     .add(  "login", username )
                     .add(  "password", password  )
                     .add(  "password2", password2  )
+                    .add(  "name", name  )
                     .build();
 
             Request request2 = new Request.Builder()

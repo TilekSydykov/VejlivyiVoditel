@@ -1,8 +1,8 @@
 package kg.flaterlab.vv.ui.login;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 import android.os.AsyncTask;
 import android.util.Patterns;
 
@@ -32,9 +32,9 @@ public class SignUpViewModel extends ViewModel {
         return signUpResult;
     }
 
-    public void signUp(String username, String password, String password2) {
+    public void signUp(String username, String password, String password2,String name) {
         // can be launched in a separate asynchronous job
-        new SignUpViewModel.SignUpUser(this).execute(username, password, password2);
+        new SignUpViewModel.SignUpUser(this).execute(username, password, password2, name);
     }
 
     public void loginDataChanged(String username, String password) {
@@ -73,7 +73,7 @@ public class SignUpViewModel extends ViewModel {
 
         @Override
         protected String doInBackground(String... strings) {
-            Result<User> result = c.get().signUpRepository.signUp(strings[0], strings[1] , strings[2]);
+            Result<User> result = c.get().signUpRepository.signUp(strings[0], strings[1] , strings[2], strings[3]);
 
             if (result instanceof Result.Success) {
                 User data = ((Result.Success<User>) result).getData();

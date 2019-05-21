@@ -1,6 +1,6 @@
 package kg.flaterlab.vv.ui.login;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 public class SignUpFormState {
     @Nullable

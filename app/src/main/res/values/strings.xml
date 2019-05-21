@@ -17,4 +17,7 @@
     <string name="sign_up_button_text">sign up</string>
     <string name="username_hint">Username</string>
     <string name="prompt_password_again">Password again</string>
+    <string name="do_not_have_accaunt">Нет Аккаутнта?</string>
+    <string name="name_and_surname">Name and Surname</string>
+    <string name="last_searched">Last searched</string>
 </resources>
