@@ -1,65 +1,63 @@
 package kg.flaterlab.vv.data.model;
 
-public class Number {
-    int version;
+import java.io.Serializable;
+
+public class Number implements Serializable {
+    int id;
     String value;
+    int votes;
+    int minus;
+    int plus;
 
-    String region;
 
-    String num;
-
-    String code;
-
-    final static int VERSION_OLD = 0;
-    // FORMAT 0 ( STANDART ) = Example - B 2345 NB
-
-    final static int VERSION_NEW = 1;
-    // FORMAT 1 ( NEW ) = Example - 01 345 ABC
-
-    public Number(String value, int version) {
-        this.version = version;
-
-        String[] arr = value.split(" ");
-
-        region = arr[0];
-
-        num = arr[1];
-
-        code = arr[2];
-
-        this.value = value;
+    public Number() {
     }
 
-    public int getVersion() {
-        return version;
+    public Number(int id, String value, int votes, int minus, int plus) {
+        this.id = id;
+        this.value = value;
+        this.votes = votes;
+        this.minus = minus;
+        this.plus = plus;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getValue() {
         return value;
     }
 
-    public void setVersion(int version) {
-        this.version = version;
+    public int getVotes() {
+        return votes;
+    }
+
+    public int getMinus() {
+        return minus;
+    }
+
+    public int getPlus() {
+        return plus;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setValue(String value) {
         this.value = value;
     }
 
-    @Override
-    public String toString() {
-        return value;
+    public void setVotes(int votes) {
+        this.votes = votes;
     }
 
-    public String getRegion() {
-        return region;
+    public void setMinus(int minus) {
+        this.minus = minus;
     }
 
-    public String getNum() {
-        return num;
-    }
-
-    public String getCode() {
-        return code;
+    public void setPlus(int plus) {
+        this.plus = plus;
     }
 }

@@ -33,90 +33,14 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void CheckUserLogin(){
-        OkHttpClient client = new OkHttpClient();
-
-        RequestBody formBody = new FormEncodingBuilder()
-                .add(  "app", "v1"  )
-                .add(  "login", "himik"  )
-                .add(  "password", "himik"  )
-                .build();
-        Request request2 = new Request.Builder()
-                .url("https://flipdex.ru/api/signIn")
-                .post(formBody)
-                .build();
-        String res2 = "";
-        try{
-            Response response2 = client.newCall(request2).execute();
-            res2 = response2.body().string();
-
-            try {
-                JSONObject json = new JSONObject(res2);
-                JSONObject json_user = json.getJSONObject("user");
-                System.out.println(res2);
-                User u = new User();
-                u.setName(json_user.getString("name"));
-                u.setUid(json_user.getString("token"));
-                u.setUsername(json_user.getString("login"));
-                u.setEmail(json_user.getString("email"));
-
-                Paper.book().write(DB.USER_NODE, u);
-            }catch (JSONException e) {
-                Log.d("check", "getCon: ");
-            }
-            Log.d("check", "post executer server res :" + res2);
-        }catch (IOException e){
-            Log.d("check", "cant read response");
-        }
-
-    }
-    @Test
-    public void CheckUserSignUp(){
-        OkHttpClient client = new OkHttpClient();
-
-        RequestBody formBody = new FormEncodingBuilder()
-                .add(  "Param1", "A"  )
-                .add(  "Param2", "b"  )
-                .build();
-        Request request2 = new Request.Builder()
-                .url("https://ptsv2.com/t/qfto0-1556245310/d/285070126/post")
-                .post(formBody)
-                .build();
-        String res2 = "";
-        try{
-            Response response2 = client.newCall(request2).execute();
-            res2 = response2.body().string();
-
-            try {
-                JSONObject json = new JSONObject(res2);
-                JSONObject json_user = json.getJSONObject("user");
-                System.out.println(res2);
-                User u = new User();
-                u.setName(json_user.getString("name"));
-                u.setUid(json_user.getString("token"));
-                u.setUsername(json_user.getString("login"));
-                u.setEmail(json_user.getString("email"));
-
-                Paper.book().write(DB.USER_NODE, u);
-            }catch (JSONException e) {
-                Log.d("check", "getCon: ");
-            }
-            Log.d("check", "post executer server res :" + res2);
-        }catch (IOException e){
-            Log.d("check", "cant read response");
-        }
-
-    }
-    @Test
     public void CheckUserVote(){
         OkHttpClient client = new OkHttpClient();
 
         RequestBody formBody = new FormEncodingBuilder()
-                .add(  "Param1", "A"  )
-                .add(  "Param2", "b"  )
+                .add(  "user", "2"  )
                 .build();
         Request request2 = new Request.Builder()
-                .url("https://ptsv2.com/t/qfto0-1556245310/d/285070126/post")
+                .url("https://flipdex.ru/api/search/0")
                 .post(formBody)
                 .build();
         String res2 = "";
@@ -124,25 +48,25 @@ public class ExampleUnitTest {
             Response response2 = client.newCall(request2).execute();
             res2 = response2.body().string();
 
-            try {
-                JSONObject json = new JSONObject(res2);
-                JSONObject json_user = json.getJSONObject("user");
-                System.out.println(res2);
-                User u = new User();
-                u.setName(json_user.getString("name"));
-                u.setUid(json_user.getString("token"));
-                u.setUsername(json_user.getString("login"));
-                u.setEmail(json_user.getString("email"));
-
-                Paper.book().write(DB.USER_NODE, u);
-            }catch (JSONException e) {
-                Log.d("check", "getCon: ");
-            }
-            Log.d("check", "post executer server res :" + res2);
+//            try {
+//                JSONObject json = new JSONObject(res2);
+//                JSONObject json_user = json.getJSONObject("user");
+//                System.out.println(res2);
+//                User u = new User();
+//                u.setName(json_user.getString("name"));
+//                u.setUid(json_user.getString("token"));
+//                u.setUsername(json_user.getString("login"));
+//                u.setEmail(json_user.getString("email"));
+//
+//                Paper.book().write(DB.USER_NODE, u);
+//            }catch (JSONException e) {
+//                Log.d("check", "getCon: ");
+//            }
+            System.out.println(res2);
+            // Log.d("check", "post executer server res :" + res2);
         }catch (IOException e){
-            Log.d("check", "cant read response");
+            // Log.d("check", "cant read response");
         }
-
     }
 
     @Test

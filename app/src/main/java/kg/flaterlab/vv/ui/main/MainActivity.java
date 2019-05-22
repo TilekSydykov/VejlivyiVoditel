@@ -14,11 +14,12 @@ import android.view.Window;
 
 import io.paperdb.Paper;
 import kg.flaterlab.vv.R;
-import kg.flaterlab.vv.fragments.AddFragment;
+import kg.flaterlab.vv.fragments.add.AddFragment;
 import kg.flaterlab.vv.fragments.DashBoardFragment;
 import kg.flaterlab.vv.fragments.ProfileFragment;
 import kg.flaterlab.vv.data.model.User;
-import kg.flaterlab.vv.ui.login.LoginActivity;
+import kg.flaterlab.vv.helper.DB;
+import kg.flaterlab.vv.ui.vote.NumberVoteActivity;
 
 public class MainActivity extends AppCompatActivity {
     User u;
@@ -50,16 +51,22 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
 
-        if(Paper.book().contains("user")){
-            u = Paper.book().read("user", new User());
+
+
+        if(Paper.book().contains(DB.USER_NODE)){
+            u = Paper.book().read(DB.USER_NODE, new User());
         }else{
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+            // if not logged in launch login activity
+            // Intent intent = new Intent(this, LoginActivity.class);
+            // startActivity(intent);
         }
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.navigation);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         replaceFragment(DashBoardFragment.newInstance(), "fg");
+
+
+
     }
 
     private void replaceFragment(Fragment newFragment, String tag) {

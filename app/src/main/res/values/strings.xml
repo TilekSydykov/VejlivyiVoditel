@@ -20,4 +20,16 @@
     <string name="do_not_have_accaunt">Нет Аккаутнта?</string>
     <string name="name_and_surname">Name and Surname</string>
     <string name="last_searched">Last searched</string>
+    <string name="votes_display">votes </string>
+    <string name="plus_display">+</string>
+    <string name="minus_display">-</string>
+    <string name="newNum">(new)</string>
+    <string name="latest_search">Latest search</string>
+    <string name="search_result">Search Result</string>
+    <string name="settings">Settings</string>
+    <string name="votes">Votes</string>
+    <string name="profile_setting">Profile setting</string>
+    <string name="about">About</string>
+    <string name="number">NUMBER</string>
+    <string name="_0">+0</string>
 </resources>

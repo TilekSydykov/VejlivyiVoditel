@@ -1,6 +1,7 @@
 package kg.flaterlab.vv.helper;
 
 import android.os.Parcel;
+import android.view.View;
 
 
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
@@ -10,9 +11,11 @@ public class NumberSugestion implements SearchSuggestion {
     String CREATOR = "f";
 
     String body;
+    int id;
 
-    public NumberSugestion(String body) {
+    public NumberSugestion(String body, int id) {
         this.body = body;
+        this.id = id;
     }
 
     @Override
