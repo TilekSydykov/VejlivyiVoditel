@@ -70,7 +70,6 @@ public class AddFragment extends Fragment {
         addViewModel = ViewModelProviders.of(this, new AddViewModelFactory())
                 .get(AddViewModel.class);
 
-
         myDataList = Paper.book().read(DB.NUMS_NODE, new ArrayList<Number>());
 
         mAdapter = new SearchResultsAdapter(myDataList, getContext());

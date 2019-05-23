@@ -20,6 +20,11 @@ public class NumberConverter {
         if(n.get(0).length() < 1 && n.get(1).length() < 2){
             return false;
         }
+
+        if(n.size() == 2 && isLetter(n.get(0).charAt(0))){
+            return false;
+        }
+
         return true;
     }
 
