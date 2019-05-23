@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.vote.NumberVoteActivity"></activity>
+        <activity android:name=".ui.informative.AboutActivity"></activity>
+        <activity android:name=".ui.vote.NumberVoteActivity" />
         <activity
             android:name=".ui.login.SignUpActivity"
             android:label="@string/title_activity_login"

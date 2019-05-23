@@ -1,6 +1,5 @@
 package kg.flaterlab.vv.ui.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.Fragment;
@@ -16,10 +15,9 @@ import io.paperdb.Paper;
 import kg.flaterlab.vv.R;
 import kg.flaterlab.vv.fragments.add.AddFragment;
 import kg.flaterlab.vv.fragments.DashBoardFragment;
-import kg.flaterlab.vv.fragments.ProfileFragment;
+import kg.flaterlab.vv.fragments.profile.ProfileFragment;
 import kg.flaterlab.vv.data.model.User;
 import kg.flaterlab.vv.helper.DB;
-import kg.flaterlab.vv.ui.vote.NumberVoteActivity;
 
 public class MainActivity extends AppCompatActivity {
     User u;

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,13 +15,14 @@ import kg.flaterlab.vv.data.model.Number;
 import kg.flaterlab.vv.helper.DB;
 
 public class NumberVoteActivity extends AppCompatActivity {
+    String vote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_number_vote);
 
-        TextView mTextView = findViewById(R.id.rating_rate);
+        final TextView mTextView = findViewById(R.id.rating_rate);
         TextView titleTextView = findViewById(R.id.title_num_activity);
         TextView votes = findViewById(R.id.votes);
         TextView plus = findViewById(R.id.plus);
@@ -46,5 +48,38 @@ public class NumberVoteActivity extends AppCompatActivity {
         plus.setText(text);
         text = getString(R.string.minus_display) + current.getMinus();
         minus.setText(text);
-    }
+
+        final RadioGroup radioGroup = findViewById( R.id.radio_buuton_group);
+        vote = "";
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int id = radioGroup.getCheckedRadioButtonId();
+                switch (id){
+                    case R.id.r_b_minus3:
+                        vote = "-3";
+                        break;
+                    case R.id.r_b_minus2:
+                        vote = "-2";
+                        break;
+                    case R.id.r_b_minus1:
+                        vote = "-1";
+                        break;
+                    case R.id.r_b_plus3:
+                        vote = "+3";
+                        break;
+                    case R.id.r_b_plus2:
+                        vote = "+2";
+                        break;
+                    case R.id.r_b_plus1:
+                        vote = "+1";
+                        break;
+
+                }
+                mTextView.setText(vote);
+            }
+        });
+
+        }
 }
