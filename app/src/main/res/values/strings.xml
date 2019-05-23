@@ -39,4 +39,6 @@
     <string name="user">User</string>
     <string name="review">Отзыв(необязвтельно)</string>
     <string name="back">Back</string>
+    <string name="_123">123</string>
+    <string name="apply">Apply</string>
 </resources>

@@ -6,7 +6,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/filter_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/name_of_app"
+            android:layout_alignEnd="@+id/name_of_app"
+            android:padding="16dp"
+            android:src="@drawable/ic_baseline_filter_list_24px" />
+
         <TextView
+            android:id="@+id/name_of_app"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="nameOfApp"
@@ -20,5 +31,28 @@
             android:layout_marginBottom="50dp">
 
         </androidx.recyclerview.widget.RecyclerView>
+        <RelativeLayout
+            android:id="@+id/filter_menu"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/white"
+            android:visibility="gone">
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/app_name" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/apply" />
+        </RelativeLayout>
+
     </RelativeLayout>
 </layout>
