@@ -41,6 +41,9 @@ public class AddFragment extends Fragment {
     TextView titleTexView;
     ArrayList<Number> myDataList;
 
+    FloatingSearchView mSearchView;
+
+
     public AddFragment() {
     }
 
@@ -74,7 +77,7 @@ public class AddFragment extends Fragment {
 
         mAdapter = new SearchResultsAdapter(myDataList, getContext());
         recyclerView.setAdapter(mAdapter);
-        final FloatingSearchView mSearchView = view.findViewById(R.id.floating_search_view);
+        mSearchView = view.findViewById(R.id.floating_search_view);
         Query = "";
 
         mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
@@ -118,6 +121,16 @@ public class AddFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        myDataList = Paper.book().read(DB.NUMS_NODE, new ArrayList<Number>());
+        mAdapter = new SearchResultsAdapter(myDataList, getContext());
+        recyclerView.setAdapter(mAdapter);
+
+        mSearchView.clearQuery();
     }
 }
 

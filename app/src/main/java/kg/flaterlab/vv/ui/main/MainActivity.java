@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             // if not logged in launch login activity
             // Intent intent = new Intent(this, LoginActivity.class);
             // startActivity(intent);
+            Paper.book().write(DB.USER_NODE, new User("dqw", "TIlek", "1"));
         }
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.navigation);

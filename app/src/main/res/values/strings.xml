@@ -37,4 +37,6 @@
     <string name="for_more_information">For more information</string>
     <string name="contacts">Instagram: @driver_bishkek   Telegram: @driver_bishkek</string>
     <string name="user">User</string>
+    <string name="review">Отзыв(необязвтельно)</string>
+    <string name="back">Back</string>
 </resources>
