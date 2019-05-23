@@ -13,6 +13,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 import io.paperdb.Paper;
@@ -46,7 +48,7 @@ public class NumberVoteActivity extends AppCompatActivity {
         TextView plus = findViewById(R.id.plus);
         TextView minus = findViewById(R.id.minus);
         EditText review = findViewById(R.id.review_on_vote);
-        Button back = findViewById(R.id.back_button);
+        FloatingActionButton back = findViewById(R.id.back_button);
         Button submit = findViewById(R.id.submit_vote);
 
         ArrayList<Number> history;

@@ -1,4 +1,4 @@
-package kg.flaterlab.vv.fragments;
+package kg.flaterlab.vv.fragments.dashboard;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import io.paperdb.Paper;
 import kg.flaterlab.vv.R;
 import kg.flaterlab.vv.adapters.MainRecyclerAdapter;
-import kg.flaterlab.vv.adapters.SearchResultsAdapter;
 import kg.flaterlab.vv.data.model.Number;
 import kg.flaterlab.vv.helper.DB;
 
@@ -31,12 +30,12 @@ public class DashBoardFragment extends Fragment {
     MainRecyclerAdapter mAdapter;
     RelativeLayout filtersLayout;
     private int shortAnimationDuration;
+    private int longAnimationDuration;
     ImageView toggler;
     boolean isFiltersUp = false;
 
 
-    public DashBoardFragment() {
-    }
+    public DashBoardFragment() { }
 
     public static DashBoardFragment newInstance() {
         return new DashBoardFragment();
@@ -53,7 +52,6 @@ public class DashBoardFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.dashboard_layout, container, false);
 
-
         recyclerView = view.findViewById(R.id.main_recycler);
         filtersLayout = view.findViewById(R.id.filter_menu);
         toggler = view.findViewById(R.id.filter_toggle);
@@ -62,10 +60,11 @@ public class DashBoardFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         myDataList = Paper.book().read(DB.NUMS_NODE, new ArrayList<Number>());
 
-
         shortAnimationDuration = getResources().getInteger(
                 android.R.integer.config_shortAnimTime);
 
+        longAnimationDuration = getResources().getInteger(
+                android.R.integer.config_shortAnimTime);
 
         toggler.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,47 +88,37 @@ public class DashBoardFragment extends Fragment {
 
     private void hideFilters(){
         filtersLayout.setAlpha(1f);
-        filtersLayout.setVisibility(View.VISIBLE);
+        ViewGroup.LayoutParams p =  filtersLayout.getLayoutParams();
+        p.height = 300;
+        filtersLayout.setLayoutParams(p);
         filtersLayout.animate()
                 .alpha(0f)
                 .setDuration(shortAnimationDuration)
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        filtersLayout.setVisibility(View.GONE);
+                        ViewGroup.LayoutParams p =  filtersLayout.getLayoutParams();
+                        p.height = 0;
+                        filtersLayout.setLayoutParams(p);
                     }
                 });
     }
     private void showFilters(){
         filtersLayout.setAlpha(0f);
-        filtersLayout.setVisibility(View.GONE);
+        ViewGroup.LayoutParams p =  filtersLayout.getLayoutParams();
+        p.height = 0;
+        filtersLayout.setLayoutParams(p);
         filtersLayout.animate()
                 .alpha(1f)
                 .setDuration(shortAnimationDuration)
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        filtersLayout.setVisibility(View.VISIBLE);
+                        ViewGroup.LayoutParams p =  filtersLayout.getLayoutParams();
+                        p.height = 300;
+                        filtersLayout.setLayoutParams(p);
                     }
                 });
-    }
-    private void crossfade() {
-
-        // Set the content view to 0% opacity but visible, so that it is visible
-        // (but fully transparent) during the animation.
-
-
-        // Animate the content view to 100% opacity, and clear any animation
-        // listener set on the view.
-        filtersLayout.animate()
-                .alpha(1f)
-                .setDuration(shortAnimationDuration)
-                .setListener(null);
-
-        // Animate the loading view to 0% opacity. After the animation ends,
-        // set its visibility to GONE as an optimization step (it won't
-        // participate in layout passes, etc.)
-
     }
 
 }

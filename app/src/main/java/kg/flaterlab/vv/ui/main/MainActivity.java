@@ -14,7 +14,7 @@ import android.view.Window;
 import io.paperdb.Paper;
 import kg.flaterlab.vv.R;
 import kg.flaterlab.vv.fragments.add.AddFragment;
-import kg.flaterlab.vv.fragments.DashBoardFragment;
+import kg.flaterlab.vv.fragments.dashboard.DashBoardFragment;
 import kg.flaterlab.vv.fragments.profile.ProfileFragment;
 import kg.flaterlab.vv.data.model.User;
 import kg.flaterlab.vv.helper.DB;
