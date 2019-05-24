@@ -10,12 +10,15 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import io.paperdb.Paper;
 import kg.flaterlab.vv.R;
@@ -33,25 +36,39 @@ public class NumberVoteActivity extends AppCompatActivity {
     AddViewModel addViewModel;
     User currentUser;
 
+    HashMap<String, String> voted;
+
+    RelativeLayout relativeLayoutVotePlace;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
 
+        if(!Paper.book().contains(DB.LAST_VOTED)){
+            voted = new HashMap<>();
+            Paper.book().write(DB.LAST_VOTED, voted);
+        }else {
+            voted = Paper.book().read(DB.LAST_VOTED, new HashMap<String, String>());
+        }
 
         setContentView(R.layout.activity_number_vote);
 
         final TextView mTextView = findViewById(R.id.rating_rate);
         TextView titleTextView = findViewById(R.id.title_num_activity);
-        TextView votes = findViewById(R.id.votes);
+        final TextView votes = findViewById(R.id.votes);
         TextView plus = findViewById(R.id.plus);
         TextView minus = findViewById(R.id.minus);
+        relativeLayoutVotePlace = findViewById(R.id.vote_place);
         EditText review = findViewById(R.id.review_on_vote);
         FloatingActionButton back = findViewById(R.id.back_button);
         Button submit = findViewById(R.id.submit_vote);
+        TextView info = findViewById(R.id.information_for_user);
 
         ArrayList<Number> history;
+
+
 
         currentUser = Paper.book().read(DB.USER_NODE, new User());
 
@@ -68,6 +85,18 @@ public class NumberVoteActivity extends AppCompatActivity {
             }
         }
         Paper.book().write(DB.NUMS_NODE, h);
+
+        if(voted.containsKey(current.getValue())){
+            long old = Integer.valueOf(voted.get(current.getValue()));
+            long now = System.currentTimeMillis() / 1000;
+            long passed = (now - old) ;
+            if(passed < 600){
+                relativeLayoutVotePlace.setVisibility(View.GONE);
+                info.setVisibility(View.VISIBLE);
+                info.setText(getString(R.string.time_limit_vote_message));
+            }
+        }
+
         titleTextView.setText(
                 NumberConverter.formatNumber(current.getValue())
         );
@@ -127,10 +156,13 @@ public class NumberVoteActivity extends AppCompatActivity {
                             vote,
                             currentUser.getUid()
                     );
+                    voted.put(current.getValue(), String.valueOf(System.currentTimeMillis()/1000));
+                    Paper.book().write(DB.LAST_VOTED, voted);
                     finish();
                 }else {
                     Toast.makeText(getApplicationContext(), "not rated", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
 

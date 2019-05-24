@@ -22,4 +22,6 @@ public class DB {
     public final static String LAST_MINUS_SAVED_TIME = "l_m_s_t";
     public final static String LAST_PLUS_SAVED_TIME = "l_p_s_t";
     public final static String LAST_VOTE_SAVED_TIME = "l_v_s_t";
+
+    public final static String LAST_VOTED = "votes_of_user";
 }

@@ -45,4 +45,5 @@
     <string name="by_plus">By Plus</string>
     <string name="by_minus">By Minus</string>
     <string name="download_failed">download failed</string>
+    <string name="time_limit_vote_message">Голосовать за номнер можно не чаще чем раз в 10 мин</string>
 </resources>
