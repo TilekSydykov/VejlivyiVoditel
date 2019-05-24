@@ -62,7 +62,7 @@ public class NumberVoteActivity extends AppCompatActivity {
         h.add(current);
         int i = 1;
         for(Number num : history){
-            if(num.getId() != current.getId() && i < 20){
+            if(num.getId() != current.getId() && i < 20 && current.getId() != 0){
                 h.add(num);
                 i++;
             }
@@ -80,6 +80,11 @@ public class NumberVoteActivity extends AppCompatActivity {
 
         addViewModel = ViewModelProviders.of(this, new AddViewModelFactory())
                 .get(AddViewModel.class);
+
+
+        if(current.getId() == 0){
+            addViewModel.addNum(current.getValue(), currentUser.getUid());
+        }
 
         final RadioGroup radioGroup = findViewById( R.id.radio_buuton_group);
         vote = "";
@@ -118,7 +123,7 @@ public class NumberVoteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!vote.isEmpty()){
                     addViewModel.voteOnUser(
-                            current.getId() + "",
+                            current.getValue(),
                             vote,
                             currentUser.getUid()
                     );

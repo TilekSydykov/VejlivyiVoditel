@@ -20,41 +20,6 @@ import kg.flaterlab.vv.helper.DB;
 public class testConnection {
     public static void main(String[] args) {
 
-        OkHttpClient client = new OkHttpClient();
-
-        RequestBody formBody = new FormEncodingBuilder()
-                .add(  "app", "v1"  )
-                .add(  "login", "tilekfromkg@gmail.com"  )
-                .add(  "password", "himikthemob"  )
-                .build();
-
-        Request request2 = new Request.Builder()
-                .url("https://flipdex.ru/api/signIn")
-                .post(formBody)
-                .build();
-        String res2 = "";
-        try{
-            Response response2 = client.newCall(request2).execute();
-            res2 = response2.body().string();
-
-            try {
-                JSONObject json = new JSONObject(res2);
-                JSONObject json_user = json.getJSONObject("user");
-                User u = new User();
-                u.setName(json_user.getString("name"));
-                u.setUid(json_user.getString("token"));
-                u.setUsername(json_user.getString("login"));
-                u.setEmail(json_user.getString("email"));
-
-                Paper.book().write(DB.USER_NODE, u);
-            }catch (JSONException e) {
-                Log.d("check", "getCon: ");
-            }
-            System.out.println(res2);
-            Log.d("check", "post executer server res :" + res2);
-        }catch (
-                IOException e){
-            Log.d("check", "cant read response");
-        }
+        System.out.println(System.currentTimeMillis() / 1000 );
     }
 }

@@ -6,28 +6,33 @@ import kg.flaterlab.vv.data.model.Number;
 
 public class NumberConverter {
 
+    static public boolean isSearch(String n){
+        if(!n.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
     static public boolean isNumber(String s){
         s = formatSearchString(s);
         if(s.length() < 4){
             return false;
         }
+
         ArrayList<String> n = separateNumsAndLetters(s);
 
         if(n.size() < 2){
             return false;
         }
 
-        if(n.get(0).length() < 1 && n.get(1).length() < 2){
+        if(n.get(0).length() < 1 || n.get(1).length() < 2){
             return false;
         }
 
-        if(n.size() == 2 && isLetter(n.get(0).charAt(0))){
-            return false;
-        }
+        String formattedNum = formatNumber(s);
 
         return true;
     }
-
 
     static public String formatSearchString(String s){
         String result = "";
@@ -47,7 +52,7 @@ public class NumberConverter {
         for (String s: arr){
             String lr = "";
             if(isInts(s)){
-                if(s.length() == 5){
+                if(s.length() == 5 || s.length() == 6){
                     lr = s.substring(0, 2) + " " + s.substring(2);
                 }else {
                     lr = s;

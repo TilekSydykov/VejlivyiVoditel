@@ -29,6 +29,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         public TextView votes;
         public TextView plus;
         public TextView minus;
+        public TextView counter;
         public MyViewHolder(CardView v) {
             super(v);
             linearLayout = v;
@@ -36,6 +37,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             plus = v.findViewById(R.id.plus);
             minus = v.findViewById(R.id.minus);
             votes = v.findViewById(R.id.votes);
+            counter = v.findViewById(R.id.rating_place);
         }
     }
 
@@ -71,6 +73,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
                 context.startActivity(intent);
             }
         });
+        int p = position +1;
+        holder.counter.setText(String.valueOf(p));
         String text = context.getString(R.string.votes_display) + " " + n.getVotes();
         holder.votes.setText(text);
         text = context.getString(R.string.plus_display) +  n.getPlus();

@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -43,6 +44,8 @@ public class AddFragment extends Fragment {
 
     FloatingSearchView mSearchView;
 
+    ProgressBar mProgreesBar;
+
 
     public AddFragment() {
     }
@@ -67,6 +70,9 @@ public class AddFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
+
+        mProgreesBar = view.findViewById(R.id.progressBar);
+
         layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
         titleTexView = view.findViewById(R.id.last_searched);
@@ -83,7 +89,8 @@ public class AddFragment extends Fragment {
         mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
             @Override
             public void onSearchTextChanged(String oldQuery, final String newQuery) {
-                if(newQuery.length() < 10 && newQuery.length() > 0 && newQuery.length() % 2 == 0){
+                if(newQuery.length() < 10 && newQuery.length() > 0){
+                    mProgreesBar.setVisibility(View.VISIBLE);
                     addViewModel.search(NumberConverter.formatSearchString(newQuery));
                     Query = newQuery;
                 }
@@ -117,6 +124,7 @@ public class AddFragment extends Fragment {
                     titleTexView.setText(view.getContext().getString(R.string.search_result));
                     mAdapter = new SearchResultsAdapter(myDataList, getContext());
                     recyclerView.setAdapter(mAdapter);
+                    mProgreesBar.setVisibility(View.GONE);
                 }
             }
         });

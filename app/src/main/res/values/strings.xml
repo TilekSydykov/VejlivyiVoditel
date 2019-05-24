@@ -41,4 +41,8 @@
     <string name="back">Back</string>
     <string name="_123">123</string>
     <string name="apply">Apply</string>
+    <string name="by_values">By Values</string>
+    <string name="by_plus">By Plus</string>
+    <string name="by_minus">By Minus</string>
+    <string name="download_failed">download failed</string>
 </resources>

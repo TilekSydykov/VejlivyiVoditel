@@ -22,12 +22,12 @@ public class AddResult {
     }
 
     @Nullable
-    ArrayList<Number> getSuccess() {
+    public ArrayList<Number> getSuccess() {
         return success;
     }
 
     @Nullable
-    Integer getError() {
+    public Integer getError() {
         return error;
     }
 }
